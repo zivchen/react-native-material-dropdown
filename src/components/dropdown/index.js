@@ -583,6 +583,8 @@ export default class Dropdown extends PureComponent {
       rippleOpacity,
       rippleDuration,
       shadeOpacity,
+      itemContainerStyle,
+      selectedItemContainerStyle,
     } = this.props;
 
     let props = propsExtractor(item, index);
@@ -618,9 +620,11 @@ export default class Dropdown extends PureComponent {
         selectedItemColor;
 
     let textStyle = { color, fontSize };
-
+    let containerStyle =
+      index === selected ? selectedItemContainerStyle : itemContainerStyle;
     props.style = [
       style,
+      containerStyle
       {
         height: this.itemSize(),
         paddingLeft: leftInset,
