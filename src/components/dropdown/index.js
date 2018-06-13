@@ -624,7 +624,7 @@ export default class Dropdown extends PureComponent {
       index === selected ? selectedItemContainerStyle : itemContainerStyle;
     props.style = [
       style,
-      containerStyle
+      containerStyle,
       {
         height: this.itemSize(),
         paddingLeft: leftInset,
