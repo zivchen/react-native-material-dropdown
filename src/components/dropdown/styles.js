@@ -28,7 +28,7 @@ export default StyleSheet.create({
   },
 
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+  //  ...StyleSheet.absoluteFillObject,
   },
 
   picker: {
