@@ -7,6 +7,7 @@ import {
   Animated,
   Modal,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Dimensions,
   Platform,
   ViewPropTypes,
@@ -723,29 +724,33 @@ export default class Dropdown extends PureComponent {
         <Modal
           visible={modal}
           transparent={true}
-          onRequestClose={this.blur}
           supportedOrientations={supportedOrientations}
         >
-          <Animated.View
-            style={[styles.overlay, overlayStyle, overlayStyleOverrides]}
-            onStartShouldSetResponder={() => true}
-            onResponderRelease={this.blur}
+          <TouchableOpacity
+            style={{ flex: 1, backgroundColor: "transparent" }}
+            onPress={this.blur}
           >
-            <View
-              style={[styles.picker, pickerStyle, pickerStyleOverrides]}
+            <Animated.View
+              style={[styles.overlay, overlayStyle, overlayStyleOverrides]}
               onStartShouldSetResponder={() => true}
+              onResponderRelease={this.blur}
             >
-              <FlatList
-                ref={this.updateScrollRef}
-                data={data}
-                style={styles.scroll}
-                renderItem={this.renderItem}
-                keyExtractor={this.keyExtractor}
-                scrollEnabled={visibleItemCount < itemCount}
-                contentContainerStyle={styles.scrollContainer}
-              />
-            </View>
-          </Animated.View>
+              <View
+                style={[styles.picker, pickerStyle, pickerStyleOverrides]}
+                onStartShouldSetResponder={() => true}
+              >
+                <FlatList
+                  ref={this.updateScrollRef}
+                  data={data}
+                  style={styles.scroll}
+                  renderItem={this.renderItem}
+                  keyExtractor={this.keyExtractor}
+                  scrollEnabled={visibleItemCount < itemCount}
+                  contentContainerStyle={styles.scrollContainer}
+                />
+              </View>
+            </Animated.View>
+          </TouchableOpacity>
         </Modal>
       </View>
     );
